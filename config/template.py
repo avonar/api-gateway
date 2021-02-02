@@ -12,6 +12,7 @@ EXCLUDED_HEADERS = {
     # 'P3P',
     # 'Set-Cookie',
     'Transfer-Encoding',
+    'X-Target-Url',
     # 'X-Content-Type-Options',
     # 'X-Frame-Options'
 }

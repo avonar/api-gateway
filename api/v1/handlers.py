@@ -32,9 +32,11 @@ async def handle(request: web.Request):
 
 
 async def handle_get(request: web.Request):
+    target_url = request.headers['X-Target-Url']
+    headers =  clear_headers(dict(request.headers))
     
     async with ClientSession() as session:
-        async with session.get(f"{request.headers['X-Target-Url']}{request.path}") as resp:
+        async with session.get(f"{target_url}{request.path}", headers=headers) as resp:
             print(resp.status)
             headers =  clear_headers(dict(resp.headers))
             await resp.text()
