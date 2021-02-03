@@ -13,6 +13,8 @@ EXCLUDED_HEADERS = {
     # 'Set-Cookie',
     'Transfer-Encoding',
     'X-Target-Url',
+    'Content-Length',
+    # 'Host',
     # 'X-Content-Type-Options',
     # 'X-Frame-Options'
 }
