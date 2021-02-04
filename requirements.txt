@@ -1,2 +1,3 @@
 aiohttp
 aiohttp_apispec
+parameterized
