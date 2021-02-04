@@ -1,8 +1,6 @@
 from aiohttp import web, ClientSession
 from aiohttp.web import Response
-from aiohttp_apispec import (request_schema, docs)
 from urllib.parse import urlparse
-from schemas import User, Message, UsersList
 from config.template import EXCLUDED_HEADERS
 import logging
 
@@ -14,8 +12,6 @@ def clear_headers(headers):
             headers.pop(header)
     return headers
 
-@docs(summary="Any get query",
-      description="use HEADERSL x-app-name, target-servicename")
 async def handle_get(request: web.Request) -> Response:
     target_url = request.headers['X-Target-Url']
     headers =  clear_headers(dict(request.headers))
