@@ -5,6 +5,8 @@ from config.template import EXCLUDED_HEADERS
 import logging
 import functools
 
+from aiohttp_apispec import (docs)
+
 stat_cache = {}
 
 
@@ -41,6 +43,11 @@ def clear_headers(headers):
     return headers
 
 
+@docs(
+    tags=['REST GATEWAY'],
+    summary='',
+    description="""curl -X GET -H "Content-Type: application/json" -H "X-Target-Url: https://httpbin.org/anything" -d '{"key1":"value"}' "http://0.0.0.0:8080" """,
+)
 @collect_statistics()
 async def handle_get(request: web.Request) -> Response:
     target_url = request.headers['X-Target-Url']
@@ -55,6 +62,11 @@ async def handle_get(request: web.Request) -> Response:
             return result
 
 
+@docs(
+    tags=['REST GATEWAY'],
+    summary='',
+    description="""curl -X POST -H "Content-Type: application/json" -H "X-Target-Url: https://httpbin.org/anything" -d '{"key1":"value"}' "http://0.0.0.0:8080" """,
+)
 @collect_statistics()
 async def handle_post(request: web.Request) -> Response:
     target_url = request.headers['X-Target-Url']
@@ -70,6 +82,11 @@ async def handle_post(request: web.Request) -> Response:
             return result
 
 
+@docs(
+    tags=['REST GATEWAY'],
+    summary='',
+    description="""curl -X PATCH -H "Content-Type: application/json" -H "X-Target-Url: https://httpbin.org/anything" -d '{"key1":"value"}' "http://0.0.0.0:8080" """,
+)
 @collect_statistics()
 async def handle_patch(request: web.Request) -> Response:
     target_url = request.headers['X-Target-Url']
@@ -85,6 +102,11 @@ async def handle_patch(request: web.Request) -> Response:
             return result
 
 
+@docs(
+    tags=['REST GATEWAY'],
+    summary='',
+    description="""curl -X PUT -H "Content-Type: application/json" -H "X-Target-Url: https://httpbin.org/anything" -d '{"key1":"value"}' "http://0.0.0.0:8080" """,
+)
 @collect_statistics()
 async def handle_put(request: web.Request) -> Response:
     target_url = request.headers['X-Target-Url']
@@ -100,6 +122,11 @@ async def handle_put(request: web.Request) -> Response:
             return result
 
 
+@docs(
+    tags=['REST GATEWAY'],
+    summary='',
+    description="""curl -X DELETE -H "Content-Type: application/json" -H "X-Target-Url: https://httpbin.org/anything" -d '{"key1":"value"}' "http://0.0.0.0:8080" """,
+)
 @collect_statistics()
 async def handle_delete(request: web.Request) -> Response:
     target_url = request.headers['X-Target-Url']
@@ -115,6 +142,11 @@ async def handle_delete(request: web.Request) -> Response:
             return result
 
 
+@docs(
+    tags=['SERVICE HEALTH'],
+    summary='requests service statistics',
+    description="",
+)
 async def statistics(request: web.Request) -> Response:
     result = web.Response(text=str(stat_cache))
     return result

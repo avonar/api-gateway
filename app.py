@@ -15,11 +15,9 @@ def create_app() -> Application:
     
     app = web.Application()
     logging.basicConfig(level=logging.INFO)
-    setup_routes(app)
-    # In-memory toy-database:
-    app["users"] = []
 
     setup_aiohttp_apispec(app, swagger_path="/docs")
+    setup_routes(app)
     app.middlewares.append(validation_middleware)
 
     return app
